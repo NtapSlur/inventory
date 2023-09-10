@@ -20,9 +20,9 @@ Pertanyaan:
 1. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
    - MVC (Model - View - Controller)
       - MVC adalah suatu pola arsitektur yang terdiri atas tiga bagian:
-         2. Model
-         2. View
-         2. Controller
+         - Model
+         - View
+         - Controller
    - MVT (Model - View - Template)
       -
    - MVVM (Model - View - ViewModel)
