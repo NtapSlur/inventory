@@ -20,9 +20,14 @@ def show_default(request):
 
 def show_main(request):
     products = Product.objects.all()
+    total = 0
+    for product in products:
+        total += product.banyak
+
     context = {
         'products' : products,
         'status' : status,
+        'total' : total
     }
     
     return render(request, "main.html", context)
