@@ -54,10 +54,37 @@ Link: https://willstore.adaptable.app/
 ## Tugas 3
 ### Pertanyaan:
 1. Apa perbedaan antara form POST dan form GET dalam Django?
-   - 
+   - Perbedaan utama dari POST dan GET adalah POST digunakan untuk mengirim data yang akan menyebabkan perubahan di server, seperti membuat, mengedit, atau menghapus data, sedangkan GET digunakan untuk mengirim request ke server untuk melihat, mengakses, dan mengambil data dari server tanpa mengubah isi dari server itu
+   - Pada umumnya POST tidak di cache, sedangkan GET dapat di cache
+   - Pada umumnya POST lebih secured karena data dikirim secara tersembunyi dalam body request HTTP, sedangkan GET kurang secured karena data terlihat di URL
+
 1. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
-   - 
+   - XML menggunakan tag untuk mendefinisikan elemen-elemen data, serta atribut untuk memberikan informasi tambahan tentang elemen
+   - JSON menggunakan pasangan key-value untuk menggambarkan datanya secara terstruktur (seperti Dictionary pada Python)
+   - HTML pada umumnya hanya digunakan untuk menggambarkan struktur halaman web untuk ditampilkan ke browser, sehingga untuk menampilkan data, HTML perlu untuk menerima query terlebih dahulu dari views dan melakukan iterasi di HTML tersebut. Dengan melakukan hal itu, HTML baru dapat menampilkan data yang diinginkan
+
 1. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
-   - 
+   - Lebih cepat untuk memparsing data dari sisi server dengan JSON.parse()
+   - Syntax yang lebih ringan dan berukuran lebih kecil, sehingga tidak memerlukan penyimpanan yang terlalu besar
+   - Mendukung banyak bahasa pemograman lain
+
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
-   - 
+   - Untuk membuat form untuk menambahkan objek Product, saya mengikuti tutorial, hanya saja saya menambahkan field-field baru sesuai dengan yang saya butuhkan. 
+   - Fungsi views dalam format HTML saya menggunakan for each pada main.html untuk menampilkan produk-produk yang sudah pernah dibuat, sedangkan fungsi views dalam format XML, JSON, XML by ID, dan JSON by ID saya mengikuti tutorial.
+   - Membuat routing untuk semua fungsi yang ada pada views.py menyesuaikan dengan path yang diinginkan
+   - Saya juga membuat suatu file default.html sehingga jika link dibuka tanpa path maka yang akan terbuka adalah default.html yang memiliki button untuk didirect ke main.html
+
+XML by ID
+![xmlbyid](https://github.com/NtapSlur/inventory/assets/119404246/f7290984-0af7-405f-88cc-dc7d8aa7085a)
+
+XML
+![xml](https://github.com/NtapSlur/inventory/assets/119404246/5bcdfc56-d24d-4a97-82f9-576eed081366)
+
+JSON by ID
+![jsonbyid](https://github.com/NtapSlur/inventory/assets/119404246/b3ae3ad7-b4df-4f32-a6ec-a6e09f281fbf)
+
+JSON
+![json](https://github.com/NtapSlur/inventory/assets/119404246/540973ec-6aee-4a9e-995c-2aaff90f917b)
+
+HTML
+![html](https://github.com/NtapSlur/inventory/assets/119404246/da3eb90e-9d78-4c3a-b4dc-b9e7d295181f)
