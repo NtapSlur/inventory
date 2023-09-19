@@ -53,11 +53,11 @@ Link: https://willstore.adaptable.app/
 
 ## Tugas 3
 ### Pertanyaan:
-2. Apa perbedaan antara form POST dan form GET dalam Django?
+1. Apa perbedaan antara form POST dan form GET dalam Django?
    - 
-2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+1. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
    - 
-2. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+1. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
    - 
-2. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
+1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
    - 
