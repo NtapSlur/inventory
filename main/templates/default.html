@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>WillStore Inventory System</h1>
+    <h3>Informasi</h3>
+
+    <h5>Name:</h5>
+    <p>{{name}}</p>
+
+    <h5>Class:</h5>
+    <p>{{class}}</p>
+    <br>
+
+    <h2>Selamat Datang di Sistem Inventory WillStore!</h2>
+    <p> Silahkan klik tombol dibawah untuk segera mengakses Database</p>
+
+    <a href="{% url 'main:show_main' %}">
+        <button>
+            Akses Database
+        </button>
+    </a>
+
+{% endblock %}

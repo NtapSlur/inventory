@@ -1,6 +1,50 @@
-<h1>WillStore Inventory System</h1>
+{% extends 'base.html' %}
 
-<h5>Nama: </h5>
-<p>{{ name }}</p>
-<h5>Kelas: </h5>
-<p>{{ class }}</p>
+{% block content %}
+    <h1>WillStore Inventory System</h1>
+
+    <h2>Database</h2>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <table>
+        <tr>
+            <th>Nama</th>
+            <th>Banyak</th>
+            <th>Deskripsi</th>
+            <th>Harga</th>
+            <th>Jenis</th>
+        </tr>
+    
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    
+        {% for product in products %}
+            <tr>
+                <td>{{product.nama}}</td>
+                <td>{{product.banyak}}</td>
+                <td>{{product.deskripsi}}</td>
+                <td>{{product.harga}}</td>
+                <td>{{product.jenis}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>Status : {{status}}</p>
+    
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Menambahkan Produk
+        </button>
+    </a>
+    
+{% endblock content %}
