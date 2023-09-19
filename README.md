@@ -1,8 +1,8 @@
 # WillStore Inventory System
 Link: https://willstore.adaptable.app/
 
-Tugas 2
-Pertanyaan:
+## Tugas 2
+### Pertanyaan:
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
    -  Pada saat proses pembuatan proyek Django baru, semua step-by-step yang dilakukan sama, hanya berbeda untuk nama project Django, dari shopping_list menjadi inventory. Kemudian untuk konfigurasi model di project inventory juga sama dengan tutorial. Untuk implementasi template, yang saya ubah adalah judul dari aplikasi web, sedangkan untuk name dan class masih sama, hanya mengubah value dari variabel tersebut di views.py. Untuk implementasi model, atribut pada objek Product mengalami penyesuaian dengan soal, yang di mana saya menambahkan atribut sebagai berikut:
       - nama = CharField
@@ -51,8 +51,8 @@ Pertanyaan:
             - Komponen yang bertugas untuk mengkonversi data dari Model menjadi format yang dibutuhkan oleh View. Dapat dibilang bahwa ViewModel menjadi jembatan antara Model dengan View
    - Perbedaan utama dari ketiga pola arsitektur ini adalah pada MVC, pengatur alur logika aplikasi dilakukan oleh Controller. Untuk MVT, pengatur alur logika aplikasi dilakukan oleh Template. Dan untuk MVVM, pengatur alur logika aplikasi dilakukan oleh ViewModel. 
 
-Tugas 3
-Pertanyaan:
+## Tugas 3
+### Pertanyaan:
 2. Apa perbedaan antara form POST dan form GET dalam Django?
    - 
 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
