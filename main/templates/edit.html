@@ -1,0 +1,53 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Mengedit Produk</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {% if cek == False %}
+        <tr>
+            <td>Nama: </td>
+            <td><input type="text" name="nama" placeholder={{nama}} class="form-control"></td>
+        </tr>
+
+        <h2>{{gagal}}</h2>
+        {% endif %}
+
+        <tr>
+            {% if cek == True %}
+            <tr>
+                <td>Nama: </td>
+                <td><span>{{nama}}</span></td>
+            </tr>
+                <tr>
+                    <td>Banyak: </td>
+                    <td><input type="text" name="banyak" placeholder={{banyak}} class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Deskripsi: </td>
+                    <td><input type="text" name="deskripsi" placeholder={{deskripsi}} class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Harga: </td>
+                    <td><input type="text" name="harga" placeholder={{harga}} class="form-control"></td>
+                </tr>
+                <td>
+                    <br>
+                    <input type="submit" value='Hapus'/>
+                </td>
+            {% endif %}
+
+        </tr>
+
+        <tr>
+            <td>
+                <br>
+                <input type="submit" value={{status}}/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
