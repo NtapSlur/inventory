@@ -106,3 +106,43 @@ HTML
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
    - Pertama untuk implementasi register, login, dan logout saya mengikuti tutorial yang dimana membuat fungsinya di views.py, kemudian membuat laman login dan register di template, paling yang membedakan adalah path setelah selesai ketiga proses tersebut. Kemudian untuk menghubungkan Product dengan User juga mirip dengan tutorial agar User memiliki list Productnya sendiri dan tidak gabung dengan user lain. Selain itu, saya juga menambahkan cookie juga untuk melihat last login. Lalu, saya juga mencoba mengerjakan bonus untuk mengedit dan menghapus atribut dari Product tetapi sementara masih belum selesai.
+
+## Tugas 5
+### Pertanyaan:
+1.  Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+   - Type Selector
+      - Type Selector digunakan untuk memilih semua elemen HTML yang sesuai dengan nama elemen yang ditentukan. Sebagai contoh, selector p akan memilih semua elemen < p >. Type selector berguna ketika ingin menerapkan gaya yang sama kepada elemen-elemen tertentu.
+   - Class Selector
+      - Class selector digunakan untuk memilih elemen berdasarkan classnya. Sebagai contoh, terdapat .button yang akan memiliki semua elemen dari class button. Class selector ini berguna ketika ingin menerapkan gaya yang sama kepada suatu sekelompok elemen berbeda.
+   - ID Selector
+      - ID Selector digunakan untuk memilih elemen berdasarkan IDnya. Misalnya #id akan memilih elemen dengan id "id". ID Selector berguna ketika ingin menerapkan gaya ke elemen dengan id spesifik, yang di mana id ini unik sehingga ingin menerapkan gaya ke satu elemen saja.
+   - Attribut Selector
+      - Attribute selector digunakan untuk memilih elemen berdasarkan atribut dan nilainya. Attribut selector ini berguna ketika ingin menerapkan gaya ke elemen berdasarkan atribut, bukan id, jenis, atau classnya.
+
+1. Jelaskan HTML5 Tag yang kamu ketahui.
+   - <!DOCTYPE html>: untuk mendefinisikan bahwa tipe data berupa html
+   - <header>: untuk mengelompokkan elemen header
+   - <nav>: untuk mengelompokkan elemen navigasi.
+   - <main>: untuk konten utama dari halaman web yang unik untuk setiap halaman.
+   - <article>: untuk konten independen yang dapat dibaca secara terpisah dari sisanya halaman web.
+   - <section>: untuk mengelompokkan konten terkait.
+   - <aside>: untuk konten yang sedikit terkait dengan konten utama, seperti sidebar.
+   - <footer>: untuk footer halaman web, biasanya berisi informasi seperti penulis, hak cipta, dan tautan ke kebijakan privasi.
+   - <figure> dan <figcaption>: untuk mengelompokkan media (seperti gambar, diagram, dan kode) dengan keterangan mereka.
+   - <video> dan <audio>: untuk menyematkan media video dan audio.
+   - <canvas>: untuk menggambar grafik pada waktu runtime menggunakan JavaScript.
+   - <svg>: untuk mendefinisikan grafik vektor berbasis XML.
+   - <datalist>: bersama dengan tag <input> untuk membuat dropdown otomatis saat pengguna mulai mengetik.
+   - <output>: untuk menampilkan hasil perhitungan atau aksi pengguna.
+
+1. Jelaskan perbedaan antara margin dan padding.
+   - Perbedaan utama antara margin dengan padding adalah margin merupakan ruang di luar batas elemen, sedangkan padding merupakan ruang di dalam batas elemen, antara batas elemen dan konten elemen itu sendiri.
+   - Margin biasanya digunakan ketika ingin mengubah jarak antar elemen, sedangkan padding biasanya digunakan ketika ingin mengubah jarak antara batas elemen dengan kontennya.
+
+1. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+   - Tailwind adalah framework yang memungkinkan untuk membuat desain sendiri dan memiliki kontrol penuh atas desain suatu website, sedangkan Bootstrap adalah framework yang menyediakan komponen-komponen bawaan seperti button, card, dan navbar untuk digunakan langsung dalam website.
+   - Perbedaan utama dari Tailwind dan Bootstrap adalah Tailwind memerlukan kita untuk membuat sendiri komponen-komponen website sehingga kode akan lebih panjang, sedangkan Bootstrap menyediakan komponen bawaan yang dapat langsung digunakan sehingga kode untuk web tidak akan sepanjang jika menggunakan Tailwind
+   - Tailwind digunakan pada saat ingin mendesain website yang original secara keseluruhan, termasuk dari pembuatan komponen-komponennya seperti button, navbar, dsb. Sedangkan Bootstrap digunakan jika ingin membuat website dengan cepat sehingga memanfaatkan komponen bawaan yang sudah ada.
+
+1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+   - Untuk script dari bootstrap saya memanfaatkan Tutorial. Namun, untuk desain dan pemanfaatan CSS saya mencoba untuk mengeksplor dan membaca dokumentasi dari Bootstrap yang di mana ternyata mengandung banyak hal yang dapat dimanfaatkan, seperti dropbutton, navbar, dsb. Yang pasti sebelum menggunakan fitur-fitur tersebut, saya harus mendeclare "div" sebagai container dari semua fitur tersebut

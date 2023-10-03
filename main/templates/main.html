@@ -1,62 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>WillStore Inventory System</h1>
-    <h2>Welcome, {{name}}</h2>
-    <h2>{{strip}}</h2>
+<nav class="navbar bg-body-tertiary " data-bs-theme="dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">WillStore Inventory System</span>
+        <div class="ms-auto d-flex align-items-center">
+            <!-- Dropdown button -->
+            <div class="dropdown me-2">
+                <button class="btn btn-success" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Welcome, {{name}}!
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="{% url 'main:create_product' %}">Menambahkan Produk Baru</a></li>
+                </ul>
+            </div>
+            
+            <a href="{% url 'main:logout' %}" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true">Logout</a>
+        </div>
+    </div>
+</nav>
+
     <h2>Database</h2>
-    <h3>Total Item: {{total}}</h3>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-    <table>
-        <tr>
-            <th>Nama</th>
-            <th>Banyak</th>
-            <th>Deskripsi</th>
-            <th>Harga</th>
-            <th>Jenis</th>
-        </tr>
-    
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-    
-        {% for product in products %}
-            <tr>
-                <td>{{product.nama}}</td>
-                <td>{{product.banyak}}</td>
-                <td>{{product.deskripsi}}</td>
-                <td>{{product.harga}}</td>
-                <td>{{product.jenis}}</td>
-            </tr>
-        {% endfor %}
-    </table>
+    <h4>Total Item: {{total}}</h4>
     <p>Status : {{status}}</p>
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
     
-    <a href="{% url 'main:create_product' %}">
-        <button>
-            Menambahkan Produk Baru
-        </button>
-    </a>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.nama}}</h5>
+                        <p class="card-text">{{product.deskripsi}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Banyak: {{product.banyak}}</li>
+                        <li class="list-group-item">Harga: {{product.harga}}</li>
+                    </ul>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">{{product.jenis}}</small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+    <p>Sesi terakhir login: {{ last_login }}</p>
 
     <br>
     <br>
-
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
     
 {% endblock content %}

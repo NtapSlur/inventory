@@ -5,42 +5,54 @@
 {% endblock meta %}
 
 {% block content %}
+<style>
+    h1 {
+      text-align: center;
+    }
 
-<div class = "login">
+    table {
+      text-align: center;
+    }
 
-    <h1>Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-             
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-
+</style>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card text-center" style="width: 25rem; height:28rem">
+        <div class="card-body">
+        <h1 class="card-header">Login Page</h1>
+        <br>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table>
+                
+                <tr>
+                    <td>Username: </td>
+                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                </tr>
+                <br>
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="password" name="password" placeholder="Password" class="form-control" style="margin-top: 20px;"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input class="btn login_btn" type="submit" value="Login" style="margin-top: 20px;"></td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <br>
+        <br>
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}     
+            Belum ada akun? <a href="{% url 'main:register' %}">Register</a>
+        </div>
+    </div>
 </div>
+
 
 {% endblock content %}

@@ -1,24 +1,35 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h1>WillStore Inventory System</h1>
-    <h3>Informasi</h3>
-
-    <h5>Name:</h5>
-    <p>{{name}}</p>
-
-    <h5>Class:</h5>
-    <p>{{class}}</p>
-    <br>
+<!-- As a heading -->
+<nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">WillStore Inventory System</span>
+        <a href="{% url 'main:show_main' %}" class="btn btn-outline-success me-2" tabindex="-1" role="button" aria-disabled="true">Login</a>
+    </div>
+</nav>
+<br>
+    
 
     <h2>Selamat Datang di Sistem Inventory WillStore!</h2>
-    <p>Silahkan klik tombol dibawah untuk segera mengakses Database</p>
+    <p>Silahkan login untuk mengakses Database</p>
     <p>NB : Info mengenai akun Dummy ada di models.py</p>
 
-    <a href="{% url 'main:show_main' %}">
-        <button>
-            Akses Database
-        </button>
-    </a>
+    <div class="card" style="border:none;">
+        <div class="card text-bg-light mb-3" style="max-width: 18rem; border:none">
+            <div class="card-header">Informasi</div>
+            <div class="card-body">
+                <h5 class="card-title">Name:</h5>
+                <p class="card-text">{{name}}</p>
+                <h5 class="card-title">Class:</h5>
+                <p class="card-text">{{class}}</p>
+            </div>
+          </div>
+    </div>
+    
+    <body>
+        <img src="https://media.tenor.com/x8v1oNUOmg4AAAAd/rickroll-roll.gif" class="img-thumbnail" width="200" height="200">
+    </body>
+
 
 {% endblock %}
