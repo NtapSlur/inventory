@@ -13,7 +13,8 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 # Create your views here.
 
 status = ''
@@ -126,43 +127,44 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-# def edit(request):
-#     products =Product.objects.filter(user=request.user)
-#     context = {'form':ProductForm(request.POST or None), 'products': products, 'nama':'Nama Produk',
-#     'status':'Cek Item', 'banyak':'', 'deskripsi':'', 'harga':'', 'cek':False, 'gagal':""}
+def get_product_json(request):
+    product_item = Product.objects.filter(user=request.user)
+    total = 0
+    for product in product_item:
+        total += product.banyak
+    data = {
+        'products': serializers.serialize('json', product_item),
+        'total': total,
+        'status':status,
+    }
+    return JsonResponse(data)
 
-#     berhasil = False
-#     if request.method == 'POST' and request.POST.get('value') != 'Hapus':
-#         temp_nama = str(request.POST.get('nama'))
-#         asli = ""
-#         for product in products:
-#             if product.nama.lower() == temp_nama.lower():
-#                 asli = product.nama
-#                 context['banyak'] = product.banyak
-#                 context['deskripsi'] = product.deskripsi
-#                 context['harga'] = product.harga
-#                 berhasil = True
-#         if berhasil:
-#             temp_banyak = request.POST.get('banyak')
-#             temp_deskripsi = request.POST.get('deskripsi')
-#             temp_harga = request.POST.get('harga')
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        nama = request.POST.get("nama")
+        harga = request.POST.get("harga")
+        deskripsi = request.POST.get("deskripsi")
+        banyak = request.POST.get("banyak")
+        jenis = request.POST.get("jenis")
+        user = request.user
+        for product in Product.objects.filter(user=request.user):
+            if product.nama.lower() == nama.lower():
+                global status
+                status = f'Gagal menambahkan {nama}, {nama} sudah ada di Database'
+                products = Product.objects.filter(user=request.user)
+                total = 0
+                for product in products:
+                    total += product.banyak
+                return JsonResponse({'status': status, 'total': total}, status=201)
+        new_product = Product(nama=nama, harga=harga, deskripsi=deskripsi, banyak = banyak, jenis=jenis, user=user)
+        new_product.save()
 
-#             if temp_banyak == None and temp_deskripsi == None and temp_harga == None:
-#                 context['cek'] = True
-#                 context['nama'] = asli
-#                 context['status'] = "Simpan"
-#                 return render(request, 'edit.html', context)
-#             else:
-#                 print(request.POST.get('banyak'))
-#         else:
-#             context['gagal'] = "Produk tidak ditemukan!"
+        status = f'Berhasil menambahkan item baru {nama} sebanyak {banyak}'
+        for product in products:
+            total += product.banyak
 
-#     elif request.method == 'POST' and request.POST.get('value') == 'Hapus':
-#         global status
-#         status = f"Berhasil menghapus {request.POST.get('nama')}!"
+        return JsonResponse({'status': status, 'total': total}, status=201)
 
-#         return render(request, 'main.html', context)
-
-    
-#     return render(request, 'edit.html', context)
+    return HttpResponseNotFound()
 

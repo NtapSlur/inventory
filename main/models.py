@@ -12,3 +12,5 @@ class Product(models.Model):
     
 #Dummy1: halotest1
 #Dummy2: halotest2
+
+#Add Product by HTML terletak di Button Welcome, #User

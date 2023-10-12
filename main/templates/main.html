@@ -1,11 +1,72 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<nav class="navbar bg-body-tertiary " data-bs-theme="dark">
+    <table id="product_cards">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Item</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="nama" class="col-form-label">Nama:</label>
+                                <input type="text" class="form-control" id="nama" name="nama"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="banyak" class="col-form-label">Banyak:</label>
+                                <input type="text" class="form-control" id="banyak" name="banyak"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deskripsi" class="col-form-label">Deskripsi:</label>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="harga" class="col-form-label">Harga:</label>
+                                <input type="number" class="form-control" id="harga" name="harga"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="jenis" class="col-form-label">Jenis:</label>
+                                <input type="text" class="form-control" id="jenis" name="jenis"></input>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </table>
+
+    <br>
+    <p>Sesi terakhir login: {{ last_login }}</p>
+
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambahkan Item (AJAX)</button>
+
+<script>
+    async function getProducts() {
+        const response = await fetch("{% url 'main:get_product_json' %}");
+        const data = await response.json();
+        return {
+            products: JSON.parse(data.products),
+            total: data.total,
+            status: data.status,
+        };
+    }
+
+    async function refreshProducts() {
+    document.getElementById("product_cards").innerHTML = "";
+    const { products, total, status } = await getProducts();
+    let htmlString = `
+    <nav class="navbar bg-body-tertiary " data-bs-theme="dark">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">WillStore Inventory System</span>
         <div class="ms-auto d-flex align-items-center">
-            <!-- Dropdown button -->
             <div class="dropdown me-2">
                 <button class="btn btn-success" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     Welcome, {{name}}!
@@ -16,37 +77,47 @@
             </div>
             
             <a href="{% url 'main:logout' %}" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true">Logout</a>
+            
         </div>
     </div>
 </nav>
-
-    <h2>Database</h2>
-    <h4>Total Item: {{total}}</h4>
-    <p>Status : {{status}}</p>
-    
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for product in products %}
-            <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">{{product.nama}}</h5>
-                        <p class="card-text">{{product.deskripsi}}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Banyak: {{product.banyak}}</li>
-                        <li class="list-group-item">Harga: {{product.harga}}</li>
-                    </ul>
-                    <div class="card-footer">
-                        <small class="text-body-secondary">{{product.jenis}}</small>
-                    </div>
+<h2>Database</h2>
+<h4>Total Item: ${total}</h4>
+<p>Status : ${status}</p>
+    <div id="product_cards" class="row row-cols-1 row-cols-md-3 g-4">`;
+    products.forEach((item) => {
+        htmlString += `
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">${item.fields.nama}</h5>
+                    <p class="card-text">${item.fields.deskripsi}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Banyak: ${item.fields.banyak}</li>
+                    <li class="list-group-item">Harga: ${item.fields.harga}</li>
+                </ul>
+                <div class="card-footer">
+                    <small class="text-body-secondary">${item.fields.jenis}</small>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-    <br>
-    <p>Sesi terakhir login: {{ last_login }}</p>
+        </div>`;
+    });
+    document.getElementById("product_cards").innerHTML = htmlString;
+    }
 
-    <br>
-    <br>
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
     
+    refreshProducts()
+    document.getElementById("button_add").onclick = addProduct
+</script>
+
 {% endblock content %}
