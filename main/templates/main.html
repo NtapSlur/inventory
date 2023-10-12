@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<nav class="navbar bg-body-tertiary " data-bs-theme="dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">WillStore Inventory System</span>
+        <div class="ms-auto d-flex align-items-center">
+            <div class="dropdown me-2">
+                <button class="btn btn-success" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Welcome, {{name}}!
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="{% url 'main:create_product' %}">Menambahkan Produk Baru</a></li>
+                </ul>
+            </div>
+            
+            <a href="{% url 'main:logout' %}" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true">Logout</a>
+            
+        </div>
+    </div>
+</nav>
     <table id="product_cards">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -63,24 +81,6 @@
     document.getElementById("product_cards").innerHTML = "";
     const { products, total, status } = await getProducts();
     let htmlString = `
-    <nav class="navbar bg-body-tertiary " data-bs-theme="dark">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">WillStore Inventory System</span>
-        <div class="ms-auto d-flex align-items-center">
-            <div class="dropdown me-2">
-                <button class="btn btn-success" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Welcome, {{name}}!
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="{% url 'main:create_product' %}">Menambahkan Produk Baru</a></li>
-                </ul>
-            </div>
-            
-            <a href="{% url 'main:logout' %}" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true">Logout</a>
-            
-        </div>
-    </div>
-</nav>
 <h2>Database</h2>
 <h4>Total Item: ${total}</h4>
 <p>Status : ${status}</p>
