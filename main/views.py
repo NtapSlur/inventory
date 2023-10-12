@@ -161,7 +161,8 @@ def add_product_ajax(request):
         new_product.save()
 
         status = f'Berhasil menambahkan item baru {nama} sebanyak {banyak}'
-        for product in products:
+        total = 0
+        for product in Product.objects.filter(user=request.user):
             total += product.banyak
 
         return JsonResponse({'status': status, 'total': total}, status=201)
