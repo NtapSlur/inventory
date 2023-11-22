@@ -15,6 +15,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+import json
 # Create your views here.
 
 status = ''
@@ -169,3 +170,22 @@ def add_product_ajax(request):
 
     return HttpResponseNotFound()
 
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        new_product = Product.objects.create(
+            user = request.user,
+            nama = data["nama"],
+            harga = int(data["harga"]),
+            deskripsi = data["deskripsi"],
+            banyak = int(data["banyak"]),
+            jenis = data["jenis"],
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
